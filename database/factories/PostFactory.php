@@ -17,7 +17,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'ip' => $this->faker->ipv4(),
+            'body' => $this->faker->text()
         ];
     }
 }
