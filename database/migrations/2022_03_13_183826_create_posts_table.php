@@ -12,8 +12,13 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('ip_addresses', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
+
+            $table->ipAddress('ip');
+            $table->text('body');
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('ip_addresses');
+        Schema::dropIfExists('posts');
     }
 };

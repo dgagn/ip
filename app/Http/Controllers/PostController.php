@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IpAddressController extends Controller
+class PostController extends Controller
 {
     //
 }
