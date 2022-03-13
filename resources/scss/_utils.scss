@@ -1,0 +1,40 @@
+@function mapReverse($map) {
+  $result: null;
+
+  @if type-of($map) == "map" {
+    $keys: map-keys($map);
+    $values: map-values($map);
+    $map-reversed: ();
+
+    @for $i from length($keys) through 1 {
+      $map-reversed: map-merge(
+        $map-reversed,
+        (
+          nth($keys, $i): nth($values, length($values) - $i + 1),
+        )
+      );
+    }
+
+    @if type-of($map-reversed) == "map" {
+      $result: $map-reversed;
+    } @else {
+      @warn 'There was an error reversing the order of "#{$map}"';
+    }
+  } @else {
+    @warn '"#{$map}" is not a valid map';
+  }
+
+  @return $result;
+}
+
+@mixin breakpoint($breakpoint, $logic: false) {
+  @if ($logic) {
+    @media #{$logic} and (min-width: theme('screens.#{$breakpoint}')) {
+      @content;
+    }
+  } @else {
+    @media (min-width: theme('screens.#{$breakpoint}')) {
+      @content;
+    }
+  }
+}

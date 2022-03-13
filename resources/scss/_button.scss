@@ -1,0 +1,5 @@
+@layer components {
+  .btn {
+    @apply transition cursor-pointer relative inline-flex justify-center items-center whitespace-nowrap decoration-0 text-base py-2xs px-sm rounded-md active:translate-y-[2px] focus:outline-0 focus:ring-2 focus:ring-offset-1 focus:ring-primary-500/60;
+  }
+}

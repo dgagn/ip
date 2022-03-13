@@ -1,0 +1,23 @@
+@use "tw-colors" as *;
+@use "utils" as *;
+@use "sass:map";
+
+$dark-colors: (
+  primary: mapReverse($blue),
+  secondary: mapReverse($purple),
+  contrast: mapReverse($slate),
+  error: mapReverse($red),
+  info: mapReverse($blue),
+  success: mapReverse($green),
+  warning: mapReverse($yellow),
+  caution: mapReverse($orange),
+);
+
+.dark {
+  --color-bg: #{map.get(map.get($dark-colors, contrast), 50)};
+  @each $color, $value in $dark-colors {
+    @each $color-intensity, $hsl in $value {
+      --color-#{$color}-#{$color-intensity}: #{$hsl};
+    }
+  }
+}

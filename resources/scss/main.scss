@@ -1,0 +1,32 @@
+@use "tailwind";
+@use "base";
+@use "typography";
+@use "colors";
+@use "dark";
+@use "button";
+
+.main-glow {
+  z-index: -10;
+  background: radial-gradient(
+    53.9% 53.9% at 77.01% 30.21%,
+    rgb(var(--color-secondary-500)) 0%,
+    rgb(var(--color-primary-500)) 100%
+  );
+  filter: blur(250px);
+}
+
+.secondary-glow {
+  position: absolute;
+  width: 692px;
+  height: 360px;
+  top: 0;
+  right: 10%;
+  z-index: -10;
+  background: radial-gradient(
+    53.9% 53.9% at 77.01% 30.21%,
+    rgb(var(--color-secondary-500)) 0%,
+    rgb(var(--color-primary-500)) 100%
+  );
+  opacity: 0.2;
+  filter: blur(100px);
+}

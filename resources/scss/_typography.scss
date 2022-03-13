@@ -1,0 +1,38 @@
+@use "utils" as *;
+
+$text-sizes: (
+  xs: calc((var(--text-unit) / var(--text-scale)) / var(--text-scale)),
+  sm: calc(var(--text-xs) * var(--text-scale)),
+  md: calc(var(--text-sm) * var(--text-scale) * var(--text-scale)),
+  lg: calc(var(--text-md) * var(--text-scale)),
+  xl: calc(var(--text-lg) * var(--text-scale)),
+  2xl: calc(var(--text-xl) * var(--text-scale)),
+  3xl: calc(var(--text-2xl) * var(--text-scale)),
+  4xl: calc(var(--text-3xl) * var(--text-scale)),
+  5xl: calc(var(--text-4xl) * var(--text-scale)),
+  6xl: calc(var(--text-5xl) * var(--text-scale)),
+) !default;
+
+$text: (
+  base: 1rem,
+  scale: 1.2,
+  unit: var(--text-base),
+) !default;
+
+:root {
+  @each $text-size, $value in $text {
+    --text-#{$text-size}: #{$value};
+  }
+
+  @include breakpoint(md) {
+    --text-base: 1.25rem;
+    --text-scale: 1.25;
+  }
+}
+
+:root,
+* {
+  @each $text-size, $value in $text-sizes {
+    --text-#{$text-size}: #{$value};
+  }
+}

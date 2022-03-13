@@ -1,0 +1,21 @@
+@use "tw-colors" as *;
+
+$colors: (
+  primary: $blue,
+  secondary: $purple,
+  contrast: $slate,
+  error: $rose,
+  info: $blue,
+  success: $green,
+  warning: $yellow,
+  caution: $orange,
+);
+
+:root {
+  --color-bg: 255 255 255; // white
+  @each $color, $value in $colors {
+    @each $color-intensity, $hsl in $value {
+      --color-#{$color}-#{$color-intensity}: #{$hsl};
+    }
+  }
+}
