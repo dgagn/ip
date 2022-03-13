@@ -1,8 +1,8 @@
 export function cookie(name, value = undefined, options = {}) {
   if (value === undefined) {
-    const cookies = document.cookie.split(";");
+    const cookies = document.cookie.split(';');
     for (const cookie of cookies) {
-      const [k, v] = cookie.split("=");
+      const [k, v] = cookie.split('=');
       if (k === name) {
         return v;
       }
@@ -10,7 +10,7 @@ export function cookie(name, value = undefined, options = {}) {
     return null;
   }
   if (value === null) {
-    value = "";
+    value = '';
     options.expires = -365;
   } else {
     value = escape(value);
@@ -18,13 +18,13 @@ export function cookie(name, value = undefined, options = {}) {
   if (options.expires) {
     const d = new Date();
     d.setDate(d.getDate() + options.expires);
-    value += "; expires=" + d.toUTCString();
+    value += '; expires=' + d.toUTCString();
   }
   if (options.domain) {
-    value += "; domain=" + options.domain;
+    value += '; domain=' + options.domain;
   }
   if (options.path) {
-    value += "; path=" + options.path;
+    value += '; path=' + options.path;
   }
-  document.cookie = name + "=" + value;
+  document.cookie = name + '=' + value;
 }

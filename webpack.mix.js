@@ -1,4 +1,4 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,12 +12,12 @@ const mix = require("laravel-mix");
  */
 
 mix
-  .js("resources/js/app.js", "public/js")
-  .sass("resources/scss/main.scss", "public/css")
+  .js('resources/js/app.js', 'public/js')
+  .sass('resources/scss/main.scss', 'public/css')
   .version()
   .options({
-    postCss: [require("tailwindcss"), require("autoprefixer")],
+    postCss: [require('tailwindcss'), require('autoprefixer')],
   })
   .browserSync({
-    proxy: "localhost",
+    proxy: 'localhost',
   });

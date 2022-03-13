@@ -1,7 +1,7 @@
 @function mapReverse($map) {
   $result: null;
 
-  @if type-of($map) == "map" {
+  @if type-of($map) == 'map' {
     $keys: map-keys($map);
     $values: map-values($map);
     $map-reversed: ();
@@ -15,7 +15,7 @@
       );
     }
 
-    @if type-of($map-reversed) == "map" {
+    @if type-of($map-reversed) == 'map' {
       $result: $map-reversed;
     } @else {
       @warn 'There was an error reversing the order of "#{$map}"';

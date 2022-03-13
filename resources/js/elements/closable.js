@@ -1,10 +1,10 @@
 export default class Closable extends HTMLElement {
   get oncloseclass() {
-    return this.getAttribute("oncloseclass") ?? "";
+    return this.getAttribute('oncloseclass') ?? '';
   }
 
   get delay() {
-    const delay = this.getAttribute("delay");
+    const delay = this.getAttribute('delay');
     return isNaN(delay) ? 0 : delay;
   }
 
@@ -14,9 +14,9 @@ export default class Closable extends HTMLElement {
   }
 
   connectedCallback() {
-    const close = this.querySelector("button");
+    const close = this.querySelector('button');
 
-    close.addEventListener("click", (e) => {
+    close.addEventListener('click', e => {
       e.preventDefault();
       this.close();
     });
@@ -24,11 +24,11 @@ export default class Closable extends HTMLElement {
 
   close() {
     if (this.oncloseclass) {
-      this.classList.add(...this.oncloseclass.split(" "));
+      this.classList.add(...this.oncloseclass.split(' '));
     }
     window.setTimeout(() => {
       this.parentElement.removeChild(this);
-      this.dispatchEvent(new CustomEvent("close"));
+      this.dispatchEvent(new CustomEvent('close'));
     }, this.delay);
   }
 }

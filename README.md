@@ -1,68 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Consignes
 
-`php artisan key:generate`
+Vous devez créer un système qui permet de répertorier les adresses IP (IPv4) de serveurs frauduleux. Le système doit être conçu avec Laravel 9 et il doit fonctionner avec Laravel Sail sur Docker.
 
-Dont forget to regerate the key when cloning !
+Vous devez utiliser TailwindCSS et il faut créer votre propre visuel pour vos pages. 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Le site doit être responsive.
 
-## About Laravel
+## Menu
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sur toutes les pages de votre site, vous devez avoir un menu qui vous permet de rapidement retourner à la page d’accueil et qui vous présente des sections selon votre état de connexion.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Lorsque vous n’êtes pas connecté, le menu proposera un lien vers la page d’accueil (recherche), la page d’ajout d’une adresse IP, la page de création d’un compte et la page de connexion.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Si vous êtes connecté, vous aurez accès à une page qui présente la liste des adresses IP que vous avez signalées en plus de la page d’accueil, de la page d’ajout et d’un lien de déconnexion.
 
-## Learning Laravel
+Les détails de chaque page sont décrits ci-dessous.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Authentification
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Vous devez utiliser les fichiers générés par Laravel Breeze pour gérer vos usagers. On doit donc avoir accès aux pages d’enregistrement, d’authentification, de récupération de mot de passe, etc.
 
-## Laravel Sponsors
+Il est également important de bien gérer les accès pour qu’une page ne soit pas accessible si l’usager n’y a pas droit.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Page d’accueil
 
-### Premium Partners
+Sur la page d’accueil, vous devez présenter un champ de recherche au centre de la page. Ce champ validera la saisie pour s’assurer qu’on a entré une adresse IP valide.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Une fois l’adresse validée, une recherche sera effectuée dans la base de données pour aller récupérer l’information sur l’adresse saisie.
 
-## Contributing
+## Résultats de recherche
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Si l’adresse IP existe en base de données, vous devez faire afficher la page de détails directement (voir la section sur la page de détails plus bas).
 
-## Code of Conduct
+Si l’adresse n’existe pas telle quelle en base de données, on retournera alors la liste des adresses qui ressemblent le plus à celle saisie. Ce sera à vous de proposer un algorithme pertinent. Vous pouvez limiter le nombre de résultats à 3.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+__Exemple__
+Recherché : 172.64.80.1
+Retourné : 172.64.80.**4**, 172.64.80.**45**, 172.6**3**.80.1
 
-## Security Vulnerabilities
+Vous devez afficher les éléments suivants dans le résultat de recherche :
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Adresse IP
+- Description
+- Nombre de commentaires
+- Nombre d’approbations
+- Date d’ajout
+- Usager qui l’a ajouté (ou Anonyme)
 
-## License
+Finalement, dans le cas où l’adresse n’existe pas telle quelle, on proposera également la possibilité de l’ajouter. L’ajout peut se faire pour un usager connecté ou non.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Page d’ajout
+
+Dans la page d’ajout, on préremplira l’adresse IP si on arrive du lien d’ajout de la page de recherche. On devra également saisir obligatoirement une description.
+
+Avant la sauvegarde, on doit vérifier que l’adresse est valide et qu’elle n’existe pas déjà en base de données.
+
+Si la création est faite par un usager connecté, on ajoutera une approbation automatiquement pour l’adresse. Sinon, le nombre d’approbations sera à 0.
+
+Après la sauvegarde, on redirigera sur la page de détails associée à notre nouvelle adresse ajoutée.
+
+## Page de détails
+
+Sur la page de détails, on affichera toutes les informations liées à l’adresse IP.
+
+Dans le cas où nous sommes connectés, on aura la possibilité d’approuver ou de désapprouver le signalement d’une adresse IP. Le système d’approbation sera simplement un chiffre. Une approbation = +1. Une désapprobation = -1. Un usager ne peut pas approuver/désapprouver une adresse plus d’une fois et ne peut changer son choix. Il faut donc conserver l’information en base de données.
+
+Dans le bas de la page, on permettra également l’ajout et l’affichage de commentaires.
+
+Les commentaires sont affichés que l’usager soit connecté ou non.
+
+Toutefois, il faut être connecté pour ajouter un commentaire. Si l’usager n’est pas connecté, on affichera un message (et les liens) pour lui indiquer qu’il doit se créer un compte ou se connecter pour ajouter un commentaire.
+
+La liste des commentaires doit être triée en ordre décroissant de date d’ajout. Si aucun commentaire n’est associé, on doit afficher un message en conséquence.
+
+## Page de nos adresses
+
+Si l’usager est connecté, il aura accès à une page qui montre la liste des adresses qu’il a lui-même ajoutées dans la base de données. Il aura alors la possibilité de supprimer une adresse du registre seulement si le nombre d’approbations est inférieur à 10. Un lien sur l’adresse lui permettra également de consulter la page de détails.
+
+## Base de données
+
+La base de données doit se configurer par les migrations et les seeds.
+
+
+Vous devez vous assurer qu’un usager « gabriel », avec le courriel « gabriel@email.com » et le mot de passe « password », soit ajouté par les seeds. Vous devez également utiliser les seeds et le concept de Faker pour ajouter de fausses données pour démontrer le fonctionnement des différentes pages.
+
+## Traductions
+
+Vous devez vous assurer que le site en entier soit en français. Incluant les pages de connexion, d’inscription, etc.
+
+## Remise
+
+**Vous devez envoyer votre projet nettoyé dans un fichier zip.**
+
+**La remise doit se faire avant le 3 avril 2022 à 21:59.**

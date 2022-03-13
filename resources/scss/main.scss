@@ -1,9 +1,9 @@
-@use "tailwind";
-@use "base";
-@use "typography";
-@use "colors";
-@use "dark";
-@use "button";
+@use 'tailwind';
+@use 'base';
+@use 'typography';
+@use 'colors';
+@use 'dark';
+@use 'button';
 
 .main-glow {
   z-index: -10;

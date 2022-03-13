@@ -1,4 +1,4 @@
-@use "utils" as *;
+@use 'utils' as *;
 
 $text-sizes: (
   xs: calc((var(--text-unit) / var(--text-scale)) / var(--text-scale)),

@@ -1,6 +1,6 @@
-@use "tw-colors" as *;
-@use "utils" as *;
-@use "sass:map";
+@use 'tw-colors' as *;
+@use 'utils' as *;
+@use 'sass:map';
 
 $dark-colors: (
   primary: mapReverse($blue),
