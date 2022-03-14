@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", function () {
-    $posts = Post::all();
+    $posts = Post::withRatings()->get();
 
     return view('posts.index', ['posts' => $posts]);
 })->name('home');

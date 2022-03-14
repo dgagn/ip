@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait Rateable
 {
-    public function scopeWithRating(Builder $query)
+    public function scopeWithRatings(Builder $query)
     {
         $query->leftJoinSub(
-            'select post_id, (sum(is_liked) - sum(!is_liked)) as rating from likes group by post_id',
-            'likes',
-            'likes.post_id',
+            'select post_id, (sum(is_liked) - sum(!is_liked)) as rating from ratings group by post_id',
+            'ratings',
+            'ratings.post_id',
             'posts.id'
         );
     }
 
-    public function isRatedBy(User $user): bool
+    public function isRatedBy(User $user = null): bool
     {
-        return $user->ratings()->where('post_id', $this->id)->exists();
+        return $user != null && $user->ratings()->where('post_id', $this->id)->exists();
     }
 
     public function like(User $user)
@@ -32,7 +32,7 @@ trait Rateable
 
     public function dislike(User $user)
     {
-        $this->likes()->create([
+        $this->ratings()->create([
             'user_id' => $user->id,
             'is_liked' => false
         ]);
