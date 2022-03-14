@@ -18,6 +18,6 @@ class PostCommentsController extends Controller
             'body' => $request->input('body')
         ]);
 
-        return back();
+        return back()->with('status', 'comment_sent');
     }
 }

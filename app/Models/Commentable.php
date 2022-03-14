@@ -17,6 +17,17 @@ trait Commentable
         );
     }
 
+    /**
+     * Order comments by the column `created_at` descending.
+     *
+     * @return HasMany the comments by the column `created_at`
+     * descending
+     */
+    public function orderedComments(): HasMany
+    {
+        return $this->comments()->latest();
+    }
+
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);

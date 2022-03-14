@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
     $posts = Post::withRatings()->withCommentsCount()->get();
-
     return view('posts.index', ['posts' => $posts]);
 })->name('home');
 
@@ -32,9 +31,9 @@ Route::delete('/posts/{post}/rate', [PostRatingsController::class, 'destroy']);
 
 Route::get("/api/{id}", function ($id) {
     $post = Post::withRatings()->findOrFail($id);
-    $isRatedByUser = $post->isRatedBy(Auth::user());
-    return view('posts.show', ['post' => $post, 'isRatedByUser' => $isRatedByUser]);
-})->name('post');
+
+    return view('posts.show', ['post' => $post]);
+})->name('post.show');
 
 
 require __DIR__ . "/auth.php";

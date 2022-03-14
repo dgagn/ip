@@ -7,9 +7,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <meta name="turbolinks-cache-control" content="no-cache"/>
-        <link rel="stylesheet" href="{{ mix('css/main.css') }}">
-
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        <link rel="stylesheet" href="{{ mix('css/main.css') }}" data-turbolinks-track="true">
+        <script src="{{ mix('js/app.js') }}" defer data-turbolinks-track="true"></script>
     </head>
     <body>
         @include('layouts.navigation')

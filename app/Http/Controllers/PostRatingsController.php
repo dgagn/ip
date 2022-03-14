@@ -14,7 +14,7 @@ class PostRatingsController extends Controller
         $this->ensureNoDuplicateRating($post, $user);
         $post->like($user);
 
-        return back();
+        return back()->with('status', 'rating_ok');
     }
 
     public function destroy(Post $post, Request $request)
@@ -23,7 +23,7 @@ class PostRatingsController extends Controller
         $this->ensureNoDuplicateRating($post, $user);
         $post->dislike($user);
 
-        return back();
+        return back()->with('status', 'rating_ok');
     }
 
     private function ensureNoDuplicateRating(Post $post, User $user)

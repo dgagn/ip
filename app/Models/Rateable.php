@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 trait Rateable
 {
@@ -19,7 +20,7 @@ trait Rateable
 
     public function isRatedBy($user = null): bool
     {
-        return $user != null && $user->ratings()->where('post_id', $this->id)->exists();
+        return $user->ratings()->where('post_id', $this->id)->exists();
     }
 
     public function like(User $user)
@@ -36,11 +37,6 @@ trait Rateable
             'user_id' => $user->id,
             'is_liked' => false
         ]);
-    }
-
-    public function ratingCount(): int
-    {
-        return $this->ratings()->count();
     }
 
     public function ratings(): HasMany
