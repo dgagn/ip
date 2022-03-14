@@ -105,12 +105,12 @@ var Closable = /*#__PURE__*/function (_HTMLElement) {
     get: function get() {
       var _this$getAttribute;
 
-      return (_this$getAttribute = this.getAttribute("oncloseclass")) !== null && _this$getAttribute !== void 0 ? _this$getAttribute : "";
+      return (_this$getAttribute = this.getAttribute('oncloseclass')) !== null && _this$getAttribute !== void 0 ? _this$getAttribute : '';
     }
   }, {
     key: "delay",
     get: function get() {
-      var delay = this.getAttribute("delay");
+      var delay = this.getAttribute('delay');
       return isNaN(delay) ? 0 : delay;
     }
   }, {
@@ -118,8 +118,8 @@ var Closable = /*#__PURE__*/function (_HTMLElement) {
     value: function connectedCallback() {
       var _this2 = this;
 
-      var close = this.querySelector("button");
-      close.addEventListener("click", function (e) {
+      var close = this.querySelector('button');
+      close.addEventListener('click', function (e) {
         e.preventDefault();
 
         _this2.close();
@@ -133,13 +133,13 @@ var Closable = /*#__PURE__*/function (_HTMLElement) {
       if (this.oncloseclass) {
         var _this$classList;
 
-        (_this$classList = this.classList).add.apply(_this$classList, _toConsumableArray(this.oncloseclass.split(" ")));
+        (_this$classList = this.classList).add.apply(_this$classList, _toConsumableArray(this.oncloseclass.split(' ')));
       }
 
       window.setTimeout(function () {
         _this3.parentElement.removeChild(_this3);
 
-        _this3.dispatchEvent(new CustomEvent("close"));
+        _this3.dispatchEvent(new CustomEvent('close'));
       }, this.delay);
     }
   }]);
@@ -163,8 +163,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme_switcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./theme-switcher */ "./resources/js/elements/theme-switcher.js");
 
 
-customElements.define("closable-element", _closable__WEBPACK_IMPORTED_MODULE_0__["default"]);
-customElements.define("theme-switcher", _theme_switcher__WEBPACK_IMPORTED_MODULE_1__["default"]);
+customElements.define('closable-element', _closable__WEBPACK_IMPORTED_MODULE_0__["default"]);
+customElements.define('theme-switcher', _theme_switcher__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 /***/ }),
 
@@ -225,15 +225,16 @@ var ThemeSwitcher = /*#__PURE__*/function (_HTMLElement) {
     key: "connectedCallback",
     value: function connectedCallback() {
       this.innerHTML = "\n      <input type=\"checkbox\">\n    ";
-      var input = this.querySelector("input");
-      input.addEventListener("change", function (e) {
-        var theme = e.currentTarget.checked ? "dark" : "light";
-        if (theme === "dark") document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");
-        (0,_functions_cookie__WEBPACK_IMPORTED_MODULE_0__.cookie)("theme", theme, {
-          expires: 7
+      var input = this.querySelector('input');
+      input.addEventListener('change', function (e) {
+        var theme = e.currentTarget.checked ? 'dark' : 'light';
+        if (theme === 'dark') document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark');
+        (0,_functions_cookie__WEBPACK_IMPORTED_MODULE_0__.cookie)('theme', theme, {
+          expires: 7,
+          path: '/'
         });
       });
-      input.checked = document.documentElement.classList.contains("dark");
+      input.checked = document.documentElement.classList.contains('dark');
     }
   }]);
 
@@ -274,7 +275,7 @@ function cookie(name) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
   if (value === undefined) {
-    var cookies = document.cookie.split(";");
+    var cookies = document.cookie.split(';');
 
     var _iterator = _createForOfIteratorHelper(cookies),
         _step;
@@ -283,7 +284,7 @@ function cookie(name) {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var _cookie = _step.value;
 
-        var _cookie$split = _cookie.split("="),
+        var _cookie$split = _cookie.split('='),
             _cookie$split2 = _slicedToArray(_cookie$split, 2),
             k = _cookie$split2[0],
             v = _cookie$split2[1];
@@ -302,7 +303,7 @@ function cookie(name) {
   }
 
   if (value === null) {
-    value = "";
+    value = '';
     options.expires = -365;
   } else {
     value = escape(value);
@@ -311,18 +312,18 @@ function cookie(name) {
   if (options.expires) {
     var d = new Date();
     d.setDate(d.getDate() + options.expires);
-    value += "; expires=" + d.toUTCString();
+    value += '; expires=' + d.toUTCString();
   }
 
   if (options.domain) {
-    value += "; domain=" + options.domain;
+    value += '; domain=' + options.domain;
   }
 
   if (options.path) {
-    value += "; path=" + options.path;
+    value += '; path=' + options.path;
   }
 
-  document.cookie = name + "=" + value;
+  document.cookie = name + '=' + value;
 }
 
 /***/ }),

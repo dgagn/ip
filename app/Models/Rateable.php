@@ -17,7 +17,7 @@ trait Rateable
         );
     }
 
-    public function isRatedBy(User $user = null): bool
+    public function isRatedBy($user = null): bool
     {
         return $user != null && $user->ratings()->where('post_id', $this->id)->exists();
     }
@@ -36,6 +36,11 @@ trait Rateable
             'user_id' => $user->id,
             'is_liked' => false
         ]);
+    }
+
+    public function ratingCount(): int
+    {
+        return $this->ratings()->count();
     }
 
     public function ratings(): HasMany

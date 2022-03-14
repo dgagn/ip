@@ -9,10 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @method static withRatings()
+ * @method static withCommentsCount()
+ */
 class Post extends Model
 {
     use HasFactory;
     use Rateable;
+    use Commentable;
 
     protected $with = ['author'];
 

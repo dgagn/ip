@@ -11,7 +11,7 @@ export default class ThemeSwitcher extends HTMLElement {
       if (theme === 'dark') document.documentElement.classList.add('dark');
       else document.documentElement.classList.remove('dark');
 
-      cookie('theme', theme, {expires: 7});
+      cookie('theme', theme, {expires: 7, path: '/'});
     });
 
     input.checked = document.documentElement.classList.contains('dark');

@@ -34,7 +34,8 @@
   input[type='search'],
   input[type='tel'],
   input[type='time'],
-  input[type='week'] {
+  input[type='week'],
+  textarea {
     @apply transition bg-contrast-100 ring-1 ring-contrast-200 focus:ring-2 focus:ring-primary-500/60 placeholder:text-contrast-300 focus-within:focus:bg-bg focus-within:focus:outline-0 py-2xs px-sm rounded-md text-base;
   }
 
