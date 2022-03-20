@@ -1,11 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostCommentsController;
-use App\Http\Controllers\PostRatingsController;
-use App\Models\Post;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,21 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    $posts = Post::withRatings()->withCommentsCount()->get();
-    return view('posts.index', ['posts' => $posts]);
-})->name('home');
 
-Route::post('/posts/{post}/comment', [PostCommentsController::class, 'store'])->name('posts.comments.store');
+Route::view("/", 'home')->name('home');
 
-Route::post('/posts/{post}/rate', [PostRatingsController::class, 'store'])->name('posts.ratings');
-Route::delete('/posts/{post}/rate', [PostRatingsController::class, 'destroy']);
-
-Route::get("/api/{id}", function ($id) {
-    $post = Post::withRatings()->findOrFail($id);
-
-    return view('posts.show', ['post' => $post]);
-})->name('post.show');
-
-
+require __DIR__ . "/posts.php";
 require __DIR__ . "/auth.php";

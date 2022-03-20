@@ -2,4 +2,17 @@
   .btn {
     @apply transition cursor-pointer relative inline-flex justify-center items-center whitespace-nowrap decoration-0 text-base py-2xs px-sm rounded-md active:translate-y-[2px] focus:outline-0 focus:ring-2 focus:ring-offset-1 focus:ring-primary-500/60;
   }
+
+  .link {
+    background-image: linear-gradient(
+      transparent 50%,
+      rgb(var(--color-primary-100)) 50%
+    );
+    background-size: 0 100%;
+    will-change: background-size;
+
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
 }

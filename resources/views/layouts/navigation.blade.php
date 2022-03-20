@@ -1,7 +1,10 @@
 <nav class="flex gap-x-md">
     <a href="{{route('home')}}">home</a>
+    <a href="{{route('posts.create')}}">add post</a>
 
     @auth
+        <a href="{{route('posts.index')}}">my posts</a>
+
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 

@@ -18,9 +18,14 @@ trait Rateable
         );
     }
 
-    public function isRatedBy($user = null): bool
+    public function isRatedBy($user): bool
     {
         return $user->ratings()->where('post_id', $this->id)->exists();
+    }
+
+    public function isLikedBy($user): bool
+    {
+        return $user !== null && $user->ratings()->where('post_id', $this->id)->where('is_liked', true)->exists();
     }
 
     public function like(User $user)

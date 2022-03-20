@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Post' => 'App\Policies\PostPolicy',
     ];
 
     /**
@@ -28,7 +28,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // user->can('rate', $post);
         Gate::define('rate', function (User $user, Post $post) {
             if (!$post->exists) {
                 return Response::deny('no_exists');

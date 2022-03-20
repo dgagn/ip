@@ -21,6 +21,11 @@ class Post extends Model
 
     protected $with = ['author'];
 
+    public static function withRatingsAndCommentsCount()
+    {
+        return self::withRatings()->withCommentsCount()->get();
+    }
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id')->withDefault([
