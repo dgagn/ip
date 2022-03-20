@@ -37,6 +37,7 @@ module.exports = {
     'bg-error-200',
     'fill-error-500',
     'dark:bg-error-200/30',
+    '!hidden',
   ],
   darkMode: 'class',
   mode: 'jit',
@@ -99,6 +100,7 @@ module.exports = {
     },
 
     spacing: {
+      0: '0',
       '4xs': '0.125em',
       '3xs': '0.25em',
       '2xs': '0.375em',

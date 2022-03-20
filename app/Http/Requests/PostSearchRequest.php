@@ -31,7 +31,7 @@ class PostSearchRequest extends FormRequest
     public function attributes()
     {
         return [
-            'q' => 'search'
+            'q' => 'de recherche'
         ];
     }
 }

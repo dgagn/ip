@@ -13,26 +13,19 @@ class PostRatingsController extends Controller
 {
     public function store(Post $post, Request $request)
     {
-        $user = $request->user();
-        $this->ensureNoDuplicateRating($post, $user);
-        $post->like($user);
+        $this->authorize('rate', $post);
+
+        $post->like($request->user());
 
         return back()->with('status', 'rating_ok');
     }
 
     public function destroy(Post $post, Request $request)
     {
-        $user = $request->user();
-        $this->ensureNoDuplicateRating($post, $user);
-        $post->dislike($user);
+        $this->authorize('rate', $post);
+
+        $post->dislike($request->user());
 
         return back()->with('status', 'rating_ok');
-    }
-
-    private function ensureNoDuplicateRating(Post $post, User $user)
-    {
-        if ($post->isRatedBy($user)) {
-            abort(400);
-        }
     }
 }

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Policies\PostPolicy;
+use App\Policies\RatingPolicy;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        'App\Models\Post' => 'App\Policies\PostPolicy',
+        'App\Models\Post' => 'App\Policies\PostPolicy'
     ];
 
     /**
@@ -28,15 +30,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('rate', function (User $user, Post $post) {
-            if (!$post->exists) {
-                return Response::deny('no_exists');
-            }
-            if ($post->isRatedBy($user)) {
-                return Response::deny('single_rating');
-            }
-
-            return Response::allow();
-        });
+        Gate::define('rate', [PostPolicy::class, 'rate']);
+        Gate::define('posts.destroy', [PostPolicy::class, 'delete']);
     }
 }

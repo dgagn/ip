@@ -19,7 +19,7 @@ class RatingFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::factory(),
             'post_id' => Post::factory(),
             'is_liked' => $this->faker->boolean()
         ];

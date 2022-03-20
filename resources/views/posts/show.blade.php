@@ -16,7 +16,7 @@
         <div class="mt-lg -mb-xs justify-center text-contrast-400 flex items-center gap-x-xs text-sm">
             <p>{{__('post.by')}}  {{$post->author->name}}</p>
             <x-seperator></x-seperator>
-            <time class="capitalize" datetime="{{$post->created_at}}">{{$post->created_at->isoFormat('MMMM d, Y')}}</time>
+            <time class="capitalize" datetime="{{$post->created_at}}">{{$post->created_at->isoFormat('MMMM D, Y')}}</time>
         </div>
         <h1 class="text-center mb-xs">{{$post->ip}}</h1>
 
@@ -72,7 +72,7 @@
                 <label class="text-md mb-xs" for="body">
                     Ajouter un nouveau commentaire
                 </label>
-                <textarea class="w-full" name="body" id="body" cols="30" rows="3" required></textarea>
+                <textarea class="w-full" name="body" id="body" cols="30" rows="3"></textarea>
                 <x-button class="mt-2xs">Commenter</x-button>
             </form>
         @else

@@ -16,7 +16,7 @@
                     <div class="flex items-center gap-x-xs text-sm mb-3xs">
                         <p>{{__('post.by')}} <a class="text-contrast-900" href="{{route('posts.show', $post->id)}}" rel="author">{{$post->author->name}}</a></p>
                         <x-seperator></x-seperator>
-                        <time class="capitalize" datetime="{{$post->created_at}}">{{$post->created_at->isoFormat('MMMM d, Y')}}</time>
+                        <time class="capitalize" datetime="{{$post->created_at}}">{{$post->created_at->isoFormat('MMMM D, Y')}}</time>
                         <x-seperator></x-seperator>
                         <a class="text-contrast-900" href="{{route('posts.show', $post->id)}}">{{$post->no_comments ?: __('post.no')}} {{$post->no_comments > 1 ? __('post.comment.plural') : __('post.comment.singular')}}</a>
                     </div>

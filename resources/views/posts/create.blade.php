@@ -18,11 +18,17 @@
 
             <div class="mb-lg">
                 <label class="mb-3xs" for="ip">IP</label>
-                <input type="text" id="ip" name="ip" class="w-full @error('ip') border-2 border-error-500 focus-within:ring-error-500 @enderror" value="{{old('ip') ?? $from}}" required autofocus>
-                <x-error class="mb-md mt-xs" :error="$errors"></x-error>
+                <input type="text" id="ip" name="ip" class="w-full mb-3xs @error('ip') border-2 border-error-500 focus-within:ring-error-500 @enderror" value="{{old('ip') ?? $from}}" required autofocus>
+                @error('ip')
+                    <x-alert class="mt-3xs" type="error">{{$message}}</x-alert>
+                @enderror
+{{--                <x-error class="mb-md mt-xs" :error="$errors"></x-error>--}}
             </div>
             <label class="mb-xs" for="body">Description</label>
-            <textarea class="w-full" name="body" id="body" cols="30" rows="3" required>{{old('body')}}</textarea>
+            <textarea class="w-full @error('body') border-2 border-error-500 focus-within:ring-error-500 @enderror" name="body" id="body" cols="30" rows="3" required>{{old('body')}}</textarea>
+            @error('body')
+                <x-alert class="mt-3xs" type="error">{{$message}}</x-alert>
+            @enderror
             <x-button class="w-full mt-md">Ajouter</x-button>
         </form>
     </div>
